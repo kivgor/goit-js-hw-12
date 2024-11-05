@@ -11,8 +11,7 @@ function handleBtnMoreClick() {
   page++;
   fetchMyRequest(previousSearchValue, page)
     .then(() => {
-      const gallery = document.querySelector('.gallery');
-      console.log(gallery.children[0].getBoundingClientRect().height);
+      const gallery = document.querySelector('.gallery');      
       window.scrollBy(
         0,
         gallery.children[0].getBoundingClientRect().height * 2
@@ -30,11 +29,9 @@ function handleSubmit(event) {
   const currentSearchValue = event.target.elements.search.value.trim();
 
   if (currentSearchValue !== '') {
-    if (previousSearchValue === currentSearchValue) {
-      // console.log('Запрос повторился');
+    if (previousSearchValue === currentSearchValue) {      
       page++;
-    } else {
-      // console.log('Новый запрос');
+    } else {      
       const gallery = document.querySelector('.gallery');
       gallery.innerHTML = '';
       page = 1;
