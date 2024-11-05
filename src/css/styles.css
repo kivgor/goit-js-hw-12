@@ -17,8 +17,12 @@
 @import url('./back-link.css');
 @import url('./footer.css');
 
+html {
+  scroll-behavior: smooth;
+}
+
 .form {
-  margin: 20px auto;
+  margin: 20px ;
 }
 
 .form-input {
@@ -81,12 +85,20 @@ border: 1px solid #4E75FF;
   background-color: #6c8cff;
 }
 
+.btn-more {
+  display: block;
+  margin: 0 auto;  
+  margin-bottom: 20px;
+  visibility: hidden;
+  position: relative;
+  margin-top: -40px;
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
-  align-items: center;
-  margin-top: 24px;
+  gap: 15px;
+  align-items: center;  
   margin-bottom: 24px;
   min-height: 240px;
 }
@@ -135,14 +147,16 @@ border: 1px solid #4E75FF;
 /* css-loader styles */
 
 .loader {
-  font-size: 48px;
-  color: #000;
-  display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  /* position: relative; */
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;  
+  display: inline-block;
+  position: relative;
   margin: auto auto;
-
+  visibility: hidden;  
 }
 
 .loader:after {
@@ -158,4 +172,8 @@ border: 1px solid #4E75FF;
   to {
     width: 100%;
   }
+}
+
+.is-active {
+  visibility: visible;
 }

@@ -1,15 +1,17 @@
-// Описаний у документації
 import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-export function createGallery(data) {
-  const gallery = document.querySelector('.gallery');
-  let markup = '<span class="loader">Loading</span>';
-  gallery.innerHTML = markup;
+let myGallery = new SimpleLightbox('.gallery a', {
+      overlayOpacity: 0.9,
+      captionsData: 'alt',
+      captionDelay: 250,
+    });
 
-  if (data.total != 0) {   
-    markup = data.hits
+export function createGallery(data) {
+  const gallery = document.querySelector('.gallery');  
+
+  if (data.total != 0) {
+    let markup = data.hits
       .map(
         image => `<li class="gallery-item">
           <a class="gallery-link" href="${image.largeImageURL}">
@@ -29,39 +31,20 @@ export function createGallery(data) {
         </li>`
       )
       .join('');
-    
-    // setTimeout(() => {      
-    //   gallery.innerHTML = markup;
-    // }, 1000);
-    
-    gallery.innerHTML = markup;
 
-    let myGallery = new SimpleLightbox('.gallery a', {
-      /* options */
-      overlayOpacity: 0.9,
-      captionsData: 'alt',
-      captionDelay: 250,
-    });
-    myGallery.refresh();
-  } else {
-    iziToastMes(
-      'Sorry, there are no images matching your search query. Please try again!'
-    );
-    markup = '';
-    gallery.innerHTML = markup;    
-  }
+    gallery.insertAdjacentHTML('beforeend', markup);  
+    myGallery.refresh();      
+  } 
 }
 
-// Описаний у документації
 import iziToast from 'izitoast';
-// Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
 
-export function iziToastMes(message) {
+export function iziToastMes(message, color='red') {
   iziToast.show({
     icon: 'icon-person',
     message: message,
-    color: 'red',
+    color: color,
     position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
     transitionIn: 'bounceInDown', // bounceInLeft, bounceInRight, bounceInUp, bounceInDown, fadeIn, fadeInDown, fadeInUp, fadeInLeft, fadeInRight or flipInX
     transitionOut: 'flipOutX', // fadeOut, fadeOutUp, fadeOutDown, fadeOutLeft, fadeOutRight, flipOutX
